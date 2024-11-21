@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //Cors
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: ['https://resonant-paprenjak-6ede1f.netlify.app/'],
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     credentials: true,
 }));
