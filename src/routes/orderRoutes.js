@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { isLoggedIn } = require('../Middleware/authMiddleware');
 const catchAsync = require('../core/catchAsync');
-const Order = require('../models/order');
+const Order = require('../models/Order');
 
 router.post('/orders', catchAsync(isLoggedIn), catchAsync(async (req, res) => {
     const { userId } = req;
