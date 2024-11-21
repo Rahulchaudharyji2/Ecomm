@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //Cors
 app.use(cors({
-    origin: ['https://resonant-paprenjak-6ede1f.netlify.app/'],
+   origin: ['https://resonant-paprenjak-6ede1f.netlify.app'], // No trailing slash
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     credentials: true,
 }));
