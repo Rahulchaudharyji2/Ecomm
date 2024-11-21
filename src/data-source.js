@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbUrl = process.env.MONGO_DB_URL || 'mongodb+srv://rahulchaudharyji2:s5lRXzU96ym1idoU@cluster0.nzxzs3o.mongodb.net/E-Comm?retryWrites=true&w=majority&appName=Cluster0';
+const dbUrl = process.env.MONGO_DB_URL || 'mongodb+srv://rahulchaudharyji2:s5lRXzU96ym1idoU@cluster0.nzxzs3o.mongodb.net/EComm?retryWrites=true&w=majority&appName=Cluster0';
 
 
 class Database{
