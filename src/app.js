@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //Cors
 app.use(cors({
-   origin: process.env.CLIENT_URL, // Allow this specific origin
+   origin: 'https://resonant-paprenjak-6ede1f.netlify.app' // Allow this specific origin
     methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allowed HTTP methods
     credentials: true, // Allow cookies to be sent with requests
 }));
