@@ -1,66 +1,48 @@
 const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const authRoute = require('./routes/authRoutes');
+const productRoutes = require('./routes/productRoutes');
+const userRoutes = require('./routes/userRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+
 const app = express();
-const cors = require('cors')
-const cookieParser=require('cookie-parser')
-const userRoutes=require('./routes/userRoutes');
-const authRoute = require("./routes/authRoutes");
-const orderRoutes=require('./routes/orderRoutes')
 
-
-
-
-
-// This is used to parse JSON data coming in request body
-// Middleware to parse incoming requests with JSON payloads
-
-
-
-app.use(cookieParser());
-
+// Middleware for parsing JSON and URL-encoded data
 app.use(express.json());
-
-
-
-
-
-
-
-// Middleware to parse incoming requests with URL-encoded payloads
 app.use(express.urlencoded({ extended: true }));
 
-//Cors
+// Middleware for handling cookies
+app.use(cookieParser());
+
+// CORS Middleware
 app.use(cors({
-   origin: 'https://resonant-paprenjak-6ede1f.netlify.app' // Allow this specific origin
+    origin: process.env.CLIENT_URL || 'https://resonant-paprenjak-6ede1f.netlify.app', // Use CLIENT_URL from .env or default URL
     methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allowed HTTP methods
-    credentials: true, // Allow cookies to be sent with requests
+    credentials: true, // Allow cookies
 }));
-
-
-// Routes
-const productRoutes = require('./routes/productRoutes');
 
 // Echo route for testing
 app.get('/echo', (req, res) => {
-    res.send('received echo');
+    res.send('Echo route working!');
 });
 
-// Use the product routes with a prefix
-app.use (authRoute);
+// Routes
+app.use(authRoute);
 app.use(productRoutes);
-
 app.use(userRoutes);
 app.use(orderRoutes);
-//use the user models
 
+// Error handler for unknown routes
+app.use((req, res) => {
+    res.status(404).json({ errMsg: 'Route not found' });
+});
 
-
-
-
-// Error Handler
+// General error handler
 app.use((err, req, res, next) => {
+    console.error('Error:', err);
     const { status = 500, message = 'Internal server error' } = err;
-    res.status(status).json({ errMsg: message })
+    res.status(status).json({ errMsg: message });
 });
 
 module.exports = app;
-
