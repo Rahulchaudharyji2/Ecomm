@@ -17,7 +17,7 @@ app.use(cookieParser());
 
 // CORS Middleware
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'https://resonant-paprenjak-6ede1f.netlify.app', // Use CLIENT_URL from .env or default URL
+    origin:'https://resonant-paprenjak-6ede1f.netlify.app', // Use CLIENT_URL from .env or default URL
     methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allowed HTTP methods
     credentials: true, // Allow cookies
 }));
